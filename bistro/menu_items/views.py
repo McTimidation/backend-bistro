@@ -4,7 +4,7 @@ from .models import Menu_Item
 
 
 def get_all_menus(request):
-    items = list(Menu_Item.objects.values())
-    return JsonResponse({'data': items})
+    data = list(Menu_Item.objects.values())
+    return JsonResponse(data, safe=False)
 
 
