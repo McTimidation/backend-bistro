@@ -15,6 +15,11 @@ class Cuisine(models.Model):
 class Location(models.Model):
     title = models.CharField(max_length=30)
     menu_items = models.ManyToManyField('Menu_Item')
+    def __str__(self):
+        return self.title
+
+
+
 
 class Menu_Item(models.Model):
     title = models.CharField(max_length=25)
