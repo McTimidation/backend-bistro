@@ -12,6 +12,9 @@ class Cuisine(models.Model):
     def __str__(self):
         return self.title
 
+class Location(models.Model):
+    title = models.CharField(max_length=30)
+    menu_items = models.ManyToManyField('Menu_Item')
 
 class Menu_Item(models.Model):
     title = models.CharField(max_length=25)
@@ -21,9 +24,10 @@ class Menu_Item(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2, default=9.99)
     spice_level = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
 
-
     def __str__(self):
-        return self.title
+        return str(self.id) + " " + self.title
+
+
 
 
 
