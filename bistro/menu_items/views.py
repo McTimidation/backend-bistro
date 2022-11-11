@@ -12,9 +12,20 @@ def view_by_spice(request):
     return JsonResponse(data, safe=False)
 
 def view_locations(request):
-    data = list(Location.objects.values())
-    return JsonResponse(data, safe=False)
+    data = Location.objects.all()
+    # .values() => Queryset [ dict ]
+    # .all() => Queryset [ ModelInstances ]
+    locations = []
+    for l in data:
+        locations.append({
+            'name': l.title,
+            'menu_items': [i.title for i in l.menu_items.all()] 
+        })
 
-    
+
+    print(data)
+    return JsonResponse(locations, safe=False)
+
+
 
 
